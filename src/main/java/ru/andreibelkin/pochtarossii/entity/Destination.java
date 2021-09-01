@@ -3,7 +3,7 @@ package ru.andreibelkin.pochtarossii.entity;
 import lombok.Data;
 
 @Data
-public class ПочтовоеОтделение {
+public abstract class ПунктНазначения {
     private int идентификатор;
-    private String название, индекс, адрес;
+    private String индекс, адрес;
 }
