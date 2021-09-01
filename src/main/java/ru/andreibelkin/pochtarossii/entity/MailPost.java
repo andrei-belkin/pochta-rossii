@@ -1,10 +1,18 @@
 package ru.andreibelkin.pochtarossii.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
-public class ПочтовоеОтделение extends ПунктНазначения {
-    private String название;
+import javax.persistence.Entity;
+
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@Entity
+public class MailPost extends Destination {
+    public MailPost(String name, String index, String address) {
+        this.setCompleteName(name);
+        this.setIndex(index);
+        this.setAddress(address);
+    }
 }

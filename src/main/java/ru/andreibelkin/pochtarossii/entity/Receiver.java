@@ -1,13 +1,39 @@
 package ru.andreibelkin.pochtarossii.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
+import org.hibernate.Hibernate;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.util.List;
+import java.util.Objects;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
-public class Получатель extends ПунктНазначения {
-    private String фамилия, имя, отчество;
-    private List<Посылка> посылки;
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
+@Entity
+public class Receiver extends Destination {
+    @OneToMany(mappedBy = "receiver")
+    @ToString.Exclude
+    private List<Shipment> shipments;
+
+    public Receiver(String completeName, String index, String address) {
+        this.setCompleteName(completeName);
+        this.setIndex(index);
+        this.setAddress(address);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Receiver receiver = (Receiver) o;
+        return Objects.equals(getId(), receiver.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }
