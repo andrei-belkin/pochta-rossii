@@ -5,6 +5,7 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,7 +14,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @ToString
 @Entity
-public class Receiver extends Destination {
+public class Receiver extends Destination implements Serializable {
     @OneToMany(mappedBy = "receiver")
     @ToString.Exclude
     private List<Shipment> shipments;

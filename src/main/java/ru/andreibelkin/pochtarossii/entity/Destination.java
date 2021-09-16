@@ -3,10 +3,9 @@ package ru.andreibelkin.pochtarossii.entity;
 import lombok.*;
 import org.hibernate.Hibernate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -14,11 +13,16 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor
 @Entity
-public abstract class Destination {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Destination implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String completeName, index, address;
+
+    @OneToMany(targetEntity = ShippingEvent.class, mappedBy = "destination")
+    @ToString.Exclude
+    private List<ShippingEvent> shippingEvents;
 
     @Override
     public boolean equals(Object o) {

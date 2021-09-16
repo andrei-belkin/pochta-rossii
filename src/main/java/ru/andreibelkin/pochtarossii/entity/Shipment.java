@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -14,7 +15,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-public class Shipment {
+public class Shipment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -52,5 +53,10 @@ public class Shipment {
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         Shipment shipment = (Shipment) o;
         return Objects.equals(id, shipment.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
     }
 }
