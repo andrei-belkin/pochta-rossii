@@ -6,7 +6,7 @@ import ru.andreibelkin.pochtarossii.entity.ShippingEvent;
 
 @Data
 @AllArgsConstructor
-public class ShipmentEventCreationDTO {
+public class ShipmentEventCreationReturnDTO {
     private int id;
     private ShippingEvent.ShipmentStatus shipmentStatus;
 }

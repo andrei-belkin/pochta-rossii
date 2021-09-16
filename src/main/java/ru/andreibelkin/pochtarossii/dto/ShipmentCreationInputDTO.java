@@ -7,7 +7,7 @@ import ru.andreibelkin.pochtarossii.entity.Shipment;
 
 @Data
 @AllArgsConstructor
-public class ShipmentCreationDTO {
+public class ShipmentCreationInputDTO {
     private Shipment.ShipmentType shipmentType;
     private Receiver receiver;
 }
